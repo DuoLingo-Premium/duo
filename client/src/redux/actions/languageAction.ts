@@ -3,7 +3,7 @@
 // ==============================
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Language } from "../../types/types"; // Importing the Language type
+import { Language } from "../../types/types";
 
 // ==============================
 // Fetch Languages Async Thunk

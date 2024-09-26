@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "../reducers/authReducer";
-import gameReducer from "../reducers/gameReducer";
-import languageReducer from "../reducers/languageReducer";
-import userReducer from "../reducers/userReducer";
+import authReducer from "../redux/reducers/authReducer";
+import gameReducer from "../redux/reducers/gameReducer";
+import languageReducer from "../redux/reducers/languageReducer";
+import userReducer from "../redux/reducers/userReducer";
 
 export const store = configureStore({
   reducer: {
