@@ -6,8 +6,8 @@ import {
   updateUserPassword,
   updateUserProfile,
   updateUserProfileWithPicture,
-} from "../../redux/actions/userActions";
-import { AppDispatch, RootState } from "../../redux/store/store";
+} from "../../redux/actions/userAction";
+import { AppDispatch, RootState } from "../../store/store";
 
 import {
   buttonStyles,
