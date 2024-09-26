@@ -1,0 +1,44 @@
+import formidable, { IncomingForm } from "formidable";
+import { NextApiRequest, NextApiResponse } from "next";
+import fs from "fs";
+import path from "path";
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const form = new IncomingForm();
+
+  form.parse(req, async (err, fields, files) => {
+    if (err) {
+      return res.status(500).json({ message: "Error parsing form data." });
+    }
+
+    const { username, email, password, role } = fields;
+    const profilePicture = files.profilePicture as formidable.File | undefined;
+
+    // Check if profilePicture is provided
+    if (profilePicture && profilePicture.filepath) {
+      try {
+        const buffer = fs.readFileSync(profilePicture.filepath);
+        const uploadPath = path.join(process.cwd(), "public", "profile-pic.png");
+
+        // Write the file to the specified path
+        fs.writeFileSync(uploadPath, buffer);
+      } catch (fileError) {
+        return res.status(500).json({ message: "Error saving the profile picture." });
+      }
+    }
+
+    // Respond back with the user data
+    res.status(200).json({
+      message: "User signed up successfully!",
+      user: { username, email, role, password },
+    });
+  });
+};
+
+export default handler;
