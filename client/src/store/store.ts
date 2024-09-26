@@ -1,12 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
-import authReducer from './authSlice'
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "../reducers/authReducer";
+import gameReducer from "../reducers/gameReducer";
+import languageReducer from "../reducers/languageReducer";
+import userReducer from "../reducers/userReducer";
 
 export const store = configureStore({
   reducer: {
+    user: userReducer,
     auth: authReducer,
+    language: languageReducer,
+    game: gameReducer,
   },
-  devTools: process.env.NODE_ENV !== 'production',
-})
+});
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
